@@ -8,6 +8,13 @@ export const getAll = async () => {
     return Object.values(result);
 };
 
+
+export const getLatest = async () => {
+  const result = await request.get(baseUrl);
+
+  return Object.values(result).slice(2);
+};
+
 export const getOne = async (wallpaperId) => {
     const result = await request.get(`${baseUrl}/${wallpaperId}`, );
 

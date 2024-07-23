@@ -1,4 +1,13 @@
+import { useState,useEffect } from "react";
+import { getAll } from "../../services/wallpaperService";
+import WallpaperListItem from "../wallpaper-list/wallpaper-list-item/WallpaperListItem";
+
 export default function Home() {
+  let [wallpapers, setWallpapers] = useState([]);
+
+  useEffect(() => {
+    getAll().then((result) => setWallpapers(result));
+  }, []);
   return (
     <section id="welcome-world">
       <div className="welcome-message">
@@ -10,26 +19,13 @@ export default function Home() {
       <div id="home-page">
         <h1>Latest Wallpapers</h1>
 
-        <div className="wallpaper">
-          <div className="image-wrap">
-            <img src="./images/CoverFire.png" />
-          </div>
-          <h3>Cover Fire</h3>
-          <div className="rating">
-            <span>☆</span>
-            <span>☆</span>
-            <span>☆</span>
-            <span>☆</span>
-            <span>☆</span>
-          </div>
-          <div className="data-buttons">
-            <a href="#" className="btn details-btn">
-              Details
-            </a>
-          </div>
-        </div>
+        {wallpapers.map((wallpaper) => (
+          <WallpaperListItem key={wallpaper._id} {...wallpaper} />
+        ))}
 
-        <p className="no-articles">No wallpapers yet</p>
+        {wallpapers.length === 0 && (
+          <p className="no-articles">No wallpapers yet</p>
+        )}
       </div>
     </section>
   );
