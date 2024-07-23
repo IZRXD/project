@@ -8,8 +8,8 @@ export const getAll = async () => {
     return Object.values(result);
 };
 
-export const getOne = async (gameId) => {
-    const result = await request.get(`${baseUrl}/${gameId}`, );
+export const getOne = async (wallpaperId) => {
+    const result = await request.get(`${baseUrl}/${wallpaperId}`, );
 
     return result;
 }

@@ -5,13 +5,13 @@ export default function Header() {
     <header>
       <h1>
         <Link className="home" to="/">
-          GamesPlay
+          WallpapersPlay
         </Link>
       </h1>
       <nav>
-        <Link to="/games">All games</Link>
+        <Link to="/wallpapers">All wallpaper</Link>
         <div id="user">
-          <Link to="/games/create">Create Game</Link>
+          <Link to="/wallpapers/create">Create Wallpaper</Link>
           <Link to="/logout">Logout</Link>
         </div>
         <div id="guest">
