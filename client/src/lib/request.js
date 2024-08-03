@@ -1,31 +1,27 @@
-const buildOptions = (data) => {
-    const options = {};
+export default async function requester(method, url, data, token) {
+  const options = {
+    method,
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
 
-    if (data) {
-        options.body = JSON.stringify(data);
-        options.headers = {
-            'content-type': 'application/json'
-        };
-    }
+  if (token) {
+    options.headers["X-Authorization"] = token;
+  }
+  if (data) {
+    options.body = JSON.stringify(data);
+  }
 
-    return options;
-};
+  const response = await fetch(url, options);
 
-const request = async (method, url, data) => {
-    const response = await fetch(url, {
-        ...buildOptions(data),
-        method,
-    });
+  //make error handling
 
-    const result = await response.json();
+  const text = await response.text();
+  return text ? JSON.parse(text) : {};
+}
 
-    return result;
-};
-
-export const get = request.bind(null, 'GET');
-export const post = request.bind(null, 'POST');
-export const put = request.bind(null, 'PUT');
-export const remove = request.bind(null, 'DELETE');
-export const patch = request.bind(null, 'PATCH');
-
-
+export const get = requester.bind(null, "GET");
+export const post = requester.bind(null, "POST");
+export const put = requester.bind(null, "PUT");
+export const del = requester.bind(null, "DELETE");
