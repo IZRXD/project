@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-
+import "./wallpaperList.css";
 import * as wallpaperService from '../../services/wallpaperService';
 import WallpaperListItem from './wallpaper-list-item/WallpaperListItem';
 
@@ -10,12 +10,10 @@ export default function WallpaperList() {
         wallpaperService.getAll()
             .then(result => setWallpapers(result));
     }, []);
-
     return (
         <section id="catalog-page">
             <h1>All Wallpapers</h1>
-
-            {wallpapers.map(wallpaper => (
+                {wallpapers.map(wallpaper => (
                 <WallpaperListItem key={wallpaper._id} {...wallpaper} />
             ))}
 
