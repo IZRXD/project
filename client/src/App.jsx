@@ -22,7 +22,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/wallpapers" element={<WallpaperList />} />
-        <Route path="/wallpapers/create" element={<WallpaperCreate />} />
+        <Route path="/create" element={<WallpaperCreate />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/wallpaper/:wallpaperId" element={<WallpaperDetails />} />

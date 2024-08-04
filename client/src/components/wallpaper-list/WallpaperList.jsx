@@ -9,7 +9,7 @@ export default function WallpaperList() {
     wallpaperService.getAll().then((result) => setWallpapers(result));
   }, []);
   return (
-    <section className="projects-section bg-light" id="projects">
+    <section className="section-orange projects-section bg-light " id="projects">
       <div className="container px-4 px-lg-5">
         {wallpapers.map((wallpaper) => (
           <WallpaperListItem key={wallpaper._id} {...wallpaper} />
