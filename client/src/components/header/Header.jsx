@@ -8,7 +8,7 @@ export default function Header() {
     >
       <div className="container px-4 px-lg-5">
         <Link className="navbar-brand" to="/">
-          Best Wallpapers
+          Oasis
         </Link>
         <button
           className="navbar-toggler navbar-toggler-right"
@@ -30,8 +30,8 @@ export default function Header() {
               </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/wallpapers">
-                Wallpapers
+              <Link className="nav-link" to="/places">
+                Places
               </Link>
             </li>
             <li className="nav-item">
@@ -46,7 +46,7 @@ export default function Header() {
             </li>
             <li className="nav-item">
               <Link className="nav-link" to="/create">
-                Upload Wallpaper
+                Upload Place
               </Link>
             </li>{" "}
             <li className="nav-item">

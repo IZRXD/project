@@ -1,6 +1,6 @@
 import * as request from "../api/requester";
 
-const baseUrl = 'http://localhost:3030/jsonstore/wallpapers'
+const baseUrl = 'http://localhost:3030/jsonstore/places'
 
 export const getAll = async () => {
     const result = await request.get(baseUrl);
@@ -15,14 +15,14 @@ export const getLatest = async () => {
   return Object.values(result).slice(2);
 };
 
-export const getOne = async (wallpaperId) => {
-    const result = await request.get(`${baseUrl}/${wallpaperId}`, );
+export const getOne = async (placeId) => {
+    const result = await request.get(`${baseUrl}/${placeId}`, );
 
     return result;
 }
 
-export const create = async (wallpaperData) => {
-    const result = await request.post(baseUrl, wallpaperData);
+export const create = async (placeData) => {
+    const result = await request.post(baseUrl, placeData);
 
     return result;
 };
