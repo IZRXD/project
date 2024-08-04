@@ -1,10 +1,7 @@
-import { useEffect, useState } from "react";
+
 import { Link } from "react-router-dom";
 export default function PlaceListItem(place) {
-  let [link, setLink] = useState();
-  useEffect(() => {
-    setLink("/places/" + place._id);
-  }, [place._id]);
+  let link= "/places/" + place._id;
   return (
     <div className="row pt-4 gx-0 mb-5 mb-lg-0 justify-content-center">
       <div className="col-lg-6">

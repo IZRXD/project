@@ -16,7 +16,7 @@ export default function PlaceList() {
         ))}
 
         {places.length === 0 && (
-          <h3 className="no-articles">No articles yet</h3>
+          <h3 className="no-articles">No places yet</h3>
         )}
       </div>
     </section>
