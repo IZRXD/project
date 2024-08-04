@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import "./wallpaperList.css";
 import * as wallpaperService from '../../services/wallpaperService';
 import WallpaperListItem from './wallpaper-list-item/WallpaperListItem';
 
