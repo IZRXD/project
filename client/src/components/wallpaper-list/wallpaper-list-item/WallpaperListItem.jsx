@@ -17,7 +17,6 @@ export default function WallpaperListItem(wallpaper) {
   };
   return (
     <div className="row pt-4 gx-0 mb-5 mb-lg-0 justify-content-center">
-      z
       <div className="col-lg-6">
         <img
           className="img-fluid"
@@ -34,7 +33,6 @@ export default function WallpaperListItem(wallpaper) {
                 className="btn"
                 onClick={downloadFIleAtUrl(wallpaper.image)}
               >
-              
                 Download
               </a>
             </div>
