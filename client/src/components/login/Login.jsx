@@ -1,96 +1,60 @@
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
+import { useLogin } from "../../hooks/useAuth";
+import { useForm } from "../../hooks/useForm";
+
 export default function Login() {
-    return (
-      // <section id="login-page" className="auth">
-      //     <form id="login">
+  const login = useLogin();
+  const navigate = useNavigate();
 
-      //         <div className="container">
-      //             <div className="brand-logo"></div>
-      //             <h1>Login</h1>
-      //             <label htmlFor="email">Email:</label>
-      //             <input type="email" id="email" name="email" placeholder="Sokka@gmail.com" />
+  const initialValues = { email: "", password: "" };
+  const loginHandler = async ({ email, password }) => {
+    try {
+      login(email, password);
+      navigate("/");
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
 
-      //             <label htmlFor="login-pass">Password:</label>
-      //             <input type="password" id="login-password" name="password" />
-      //             <input type="submit" className="btn submit" value="Login" />
-      //             <p className="field">
-      //                 <span>If you don{"'"}t have profile click <a href="#">here</a></span>
-      //             </p>
-      //         </div>
-      //     </form>
-      // </section>
+  const { values, changeHandler, submitHandler } = useForm(
+    initialValues,
+    loginHandler
+  );
 
-      <section className="signup-section" id="signup">
-        <div className="container px-4 px-lg-5">
-          <div className="row gx-4 gx-lg-5">
-            <div className="col-md-10 col-lg-8 mx-auto text-center">
-              <i className="far fa-paper-plane fa-2x mb-2 text-white"></i>
-              <h2 className="text-white mb-5">Subscribe to receive updates!</h2>
+  return (
+    // <!-- Login Page ( Only for Guest users ) -->
+    <section id="login-page" className="auth">
+      <form id="login" onSubmit={submitHandler}>
+        <div className="container">
+          <div className="brand-logo"></div>
+          <h1>Login</h1>
+          <label htmlFor="email">Email:</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            value={values.email}
+            onChange={changeHandler}
+            placeholder="Sokka@gmail.com"
+          />
 
-              <form
-                className="form-signup"
-                id="contactForm"
-                data-sb-form-api-token="API_TOKEN"
-              >
-                {/* <!-- Email address input--> */}
-                <div className="row input-group-newsletter">
-                  <div className="col">
-                    <input
-                      className="form-control"
-                      id="emailAddress"
-                      type="email"
-                      placeholder="Enter email address..."
-                      aria-label="Enter email address..."
-                      data-sb-validations="required,email"
-                    />
-                  </div>
-                  <div className="col-auto">
-                    <button
-                      className="btn btn-primary disabled"
-                      id="submitButton"
-                      type="submit"
-                    >
-                      Notify Me!
-                    </button>
-                  </div>
-                </div>
-                <div
-                  className="invalid-feedback mt-2"
-                  data-sb-feedback="emailAddress:required"
-                >
-                  An email is required.
-                </div>
-                <div
-                  className="invalid-feedback mt-2"
-                  data-sb-feedback="emailAddress:email"
-                >
-                  Email is not valid.
-                </div>
-
-                {/* <!-- This is what your users will see when the form-->
-                            <!-- has successfully submitted--> */}
-                <div className="d-none" id="submitSuccessMessage">
-                  <div className="text-center mb-3 mt-2 text-white">
-                    <div className="fw-bolder">Form submission successful!</div>
-                    To activate this form, sign up at
-                    <br />
-                    <Link to="https://startbootstrap.com/solution/contact-forms">
-                      https://startbootstrap.com/solution/contact-forms
-                    </Link>
-                  </div>
-                </div>
-
-                {/* <!-- This is what your users will see when there is-->
-                            <!-- an error submitting the form--> */}
-                <div className="d-none" id="submitErrorMessage">
-                  <div className="text-center text-danger mb-3 mt-2">
-                    Error sending message!
-                  </div>
-                </div>
-              </form>
-            </div>
-          </div>
+          <label htmlFor="login-pass">Password:</label>
+          <input
+            type="password"
+            id="login-password"
+            name="password"
+            value={values.password}
+            onChange={changeHandler}
+          />
+          <input type="submit" className="btn submit" value="Login" />
+          <p className="field">
+            <span>
+              If you do not have profile click <a href="/register">here</a>
+            </span>
+          </p>
         </div>
-      </section>
-    );
+      </form>
+    </section>
+  );
 }

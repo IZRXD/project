@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
-
+import { useAuthContext } from "../../contexts/AuthContext";
 export default function Header() {
+  const { isAuthenticated } = useAuthContext();
   return (
     <nav
       className="navbar navbar-expand-lg navbar-light fixed-top  "
@@ -23,38 +24,54 @@ export default function Header() {
           <i className="fas fa-bars"></i>
         </button>
         <div className="collapse navbar-collapse" id="navbarResponsive">
-          <ul className="navbar-nav ms-auto">
-            <li className="nav-item">
-              <Link className="nav-link" to="/about">
-                About
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/places">
-                Places
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/login">
-                Login
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/register">
-                Register
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/create">
-                Upload Place
-              </Link>
-            </li>{" "}
-            <li className="nav-item">
-              <Link className="nav-link" to="/logout">
-                Logout
-              </Link>
-            </li>
-          </ul>
+          {isAuthenticated ? (
+            <ul className="navbar-nav ms-auto">
+              <li className="nav-item">
+                <Link className="nav-link" to="/about">
+                  About
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/places">
+                  Places
+                </Link>
+              </li>
+
+              <li className="nav-item">
+                <Link className="nav-link" to="/create">
+                  Upload Place
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/logout">
+                  Logout
+                </Link>
+              </li>
+            </ul>
+          ) : (
+            <ul className="navbar-nav ms-auto">
+              <li className="nav-item">
+                <Link className="nav-link" to="/about">
+                  About
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/places">
+                  Places
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/login">
+                  Login
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/register">
+                  Register
+                </Link>
+              </li>
+            </ul>
+          )}
         </div>
       </div>
     </nav>
