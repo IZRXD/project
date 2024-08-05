@@ -16,7 +16,7 @@ export default function PlaceListItem(place) {
           <div className="d-flex h-100">
             <div className="project-text w-100 my-auto text-center text-lg-left">
               <h4 className="text-white">{place.title}</h4>
-              <Link to={link}>More Info</Link>
+              <Link className="btn" to={link}>More Info</Link>
             </div>
           </div>
         </div>
