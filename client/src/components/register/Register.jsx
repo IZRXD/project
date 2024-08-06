@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useRegister } from "../../hooks/useAuth";
 import { useForm } from "../../hooks/useForm";
 import { useState } from "react";
+import "./register.css"
 
 export default function Register() {
   const [error, setError] = useState("");
@@ -13,6 +14,10 @@ export default function Register() {
   const registerHandler = async (values) => {
     if (values.password !== values["confirm-password"]) {
       return setError("Password mismatch!");
+    }
+    if(!values.email.includes('@')){
+      
+        return setError("Not email");
     }
 
     try {
@@ -29,55 +34,81 @@ export default function Register() {
   );
 
   return (
-    // <!-- Register Page ( Only for Guest users ) -->
-    <section id="register-page" className="content auth">
-      <form id="register" onSubmit={submitHandler}>
-        <div className="container">
-          <div className="brand-logo"></div>
-          <h1>Register</h1>
-
-          <label htmlFor="email">Email:</label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            placeholder="maria@email.com"
-            value={values.email}
-            onChange={changeHandler}
-          />
-
-          <label htmlFor="pass">Password:</label>
-          <input
-            type="password"
-            name="password"
-            id="register-password"
-            value={values.password}
-            onChange={changeHandler}
-          />
-
-          <label htmlFor="con-pass">Confirm Password:</label>
-          <input
-            type="password"
-            name="confirm-password"
-            id="confirm-password"
-            value={values["confirm-password"]}
-            onChange={changeHandler}
-          />
-
-          {error && (
-            <p>
-              <span>{error}</span>
-            </p>
-          )}
-          <input className="btn submit" type="submit" value="Register" />
-
-          <p className="field">
-            <span>
-              If you already have profile click <a href="/login">here</a>
-            </span>
-          </p>
+    <>
+      {error && (
+        <div className="error-container hide-after-2s">
+          <p>{error}</p>
         </div>
-      </form>
-    </section>
+      )}
+      <section className="ftco-section">
+        <div className="container">
+          <div className="row justify-content-center">
+            <div className="col-md-6 text-center mb-5">
+              <h2 className="heading-section">Register</h2>
+            </div>
+          </div>
+          <div className="row justify-content-center">
+            <div className="col-md-6 col-lg-4">
+              <div className="login-wrap p-0">
+                <form onSubmit={submitHandler} className="form">
+                  <div className="form-group">
+                    <input
+                      type="text"
+                      className="form-control"
+                      value={values.email}
+                      onChange={changeHandler}
+                      name="email"
+                      placeholder="Email"
+                      required
+                    />
+                  </div>
+                  <div className="form-group">
+                    <input
+                      id="password-field"
+                      type="password"
+                      name="password"
+                      value={values.password}
+                      onChange={changeHandler}
+                      className="form-control"
+                      placeholder="Password"
+                      required
+                    />
+                    <span className="fa fa-fw fa-eye field-icon toggle-password"></span>
+                  </div>{" "}
+                  <div className="form-group">
+                    <input
+                      type="password"
+                      name="confirm-password"
+                      id="confirm-password"
+                      value={values["confirm-password"]}
+                      onChange={changeHandler}
+                      className="form-control"
+                      placeholder="Password"
+                      required
+                    />
+                    <span className="fa fa-fw fa-eye field-icon toggle-password"></span>
+                  </div>
+                  <div className="form-group">
+                    <button
+                      type="submit"
+                      className="form-control btn-sign btn-primary submit px-3"
+                    >
+                      Sign In
+                    </button>
+                  </div>
+                  <div className="form-group d-md-flex">
+                    <div className="w-40 text-md-right">
+                      <a href="/register" style={{ color: "#fff" }}>
+                        Create an account
+                      </a>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </>
   );
 }

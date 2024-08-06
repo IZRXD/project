@@ -1,0 +1,59 @@
+.error-container {
+  position: fixed;
+  right: 5em;
+  min-width: 80px;
+  display: block;
+  z-index: 11111;
+  top: 13%;
+  text-align: center;
+  border-radius: 0.5rem;
+  color: rgb(255, 255, 255);
+  font-style: italic;
+  font-weight: bold;
+  height: auto;
+  width: 300px;
+  padding: 1em;
+}
+
+.error-container > p {
+  background: #2c3e50;
+  font-size: 18px;
+  padding: 10px;
+  height: auto;
+}
+
+.error-container {
+  animation: cssAnimation 0s ease-in 2s forwards;
+}
+@keyframes hideDiv {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+.hide-after-2s {
+  animation: hideDiv 2s forwards;
+}
+
+
+@keyframes cssAnimation {
+  to {
+    width: 0;
+    height: 0;
+    overflow: hidden;
+    padding: 0;
+  }
+}
+
+@-webkit-keyframes cssAnimation {
+  to {
+    width: 0;
+    height: 0;
+    visibility: hidden;
+    padding: 0;
+  }
+}

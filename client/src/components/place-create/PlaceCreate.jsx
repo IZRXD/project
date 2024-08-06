@@ -1,46 +1,99 @@
-import { useNavigate } from 'react-router-dom';
-
-import * as placeService from '../../services/placeService';
+import { useNavigate } from "react-router-dom";
+import { useForm } from "../../hooks/useForm";
+import * as placeService from "../../services/placeService";
 
 export default function PlaceCreate() {
-    const navigate = useNavigate();
-    
-    const createPlaceSubmitHandler = async (e) => {
-        e.preventDefault();
+  const navigate = useNavigate();
 
-        const placeData = Object.fromEntries(new FormData(e.currentTarget));
+  const initialValues = { email: "", password: "", "confirm-password": "" };
+  const createPlaceSubmitHandler = async (e) => {
+    e.preventDefault();
 
-        try {
-            await placeService.create(placeData);
+    const placeData = Object.fromEntries(new FormData(e.currentTarget));
 
-            navigate('/places');
-        } catch (err) {
-            // Error notification
-            console.log(err);
-        }
+    try {
+      await placeService.create(placeData);
+
+      navigate("/places");
+    } catch (err) {
+      // Error notification
+      console.log(err);
     }
+  };
+  const { values, changeHandler, submitHandler } = useForm(
+    initialValues,
+    createPlaceSubmitHandler
+  );
 
-    return (
-        <section id="create-page" className="auth">
-            <form id="create" onSubmit={createPlaceSubmitHandler}>
-                <div className="container">
-                    <h1>Create Place</h1>
-                    <label htmlFor="leg-title">Title:</label>
-                    <input type="text" id="title" name="title" placeholder="Enter place title..." />
-
-                    <label htmlFor="category">Category:</label>
-                    <input type="text" id="category" name="category" placeholder="Enter place category..." />
-
-            
-
-                    <label htmlFor="place-img">Image:</label>
-                    <input type="text" id="imageUrl" name="imageUrl" placeholder="Upload a photo..." />
-
-                    <label htmlFor="summary">Summary:</label>
-                    <textarea name="summary" id="summary"></textarea>
-                    <input className="btn submit" type="submit" value="Create Place" />
+  return (
+    <section className="ftco-section">
+      <div className="container">
+        <div className="row justify-content-center">
+          <div className="col-md-6 text-center mb-5">
+            <h2 className="heading-section">Register</h2>
+          </div>
+        </div>
+        <div className="row justify-content-center">
+          <div className="col-md-6 col-lg-4">
+            <div className="login-wrap p-0">
+              <form onSubmit={submitHandler} className="form">
+                <div className="form-group">
+                  <input
+                    type="text"
+                    className="form-control"
+                    value={values.email}
+                    onChange={changeHandler}
+                    name="email"
+                    placeholder="Email"
+                    required
+                  />
                 </div>
-            </form>
-        </section>
-    );
+                <div className="form-group">
+                  <input
+                    id="password-field"
+                    type="password"
+                    name="password"
+                    value={values.password}
+                    onChange={changeHandler}
+                    className="form-control"
+                    placeholder="Password"
+                    required
+                  />
+                  <span className="fa fa-fw fa-eye field-icon toggle-password"></span>
+                </div>{" "}
+                <div className="form-group">
+                  <input
+                    type="password"
+                    name="confirm-password"
+                    id="confirm-password"
+                    value={values["confirm-password"]}
+                    onChange={changeHandler}
+                    className="form-control"
+                    placeholder="Password"
+                    required
+                  />
+                  <span className="fa fa-fw fa-eye field-icon toggle-password"></span>
+                </div>
+                <div className="form-group">
+                  <button
+                    type="submit"
+                    className="form-control btn-sign btn-primary submit px-3"
+                  >
+                    Sign In
+                  </button>
+                </div>
+                <div className="form-group d-md-flex">
+                  <div className="w-40 text-md-right">
+                    <a href="/register" style={{ color: "#fff" }}>
+                      Create an account
+                    </a>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
 }
