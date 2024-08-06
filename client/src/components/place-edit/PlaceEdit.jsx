@@ -1,29 +1,29 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useForm } from "../../hooks/useForm";
-import * as placeService from "../../services/placeService";
+import {edit} from "../../services/placeService";
+import { useGetOnePlaces } from "../../hooks/usePlaces";
 import { useAuthContext } from "../../contexts/AuthContext";
 
-export default function PlaceCreate() {
+export default function PlaceEdit() {
   const navigate = useNavigate();
-  const {userId} =useAuthContext();
-  const initialValues = { title: "", distinguishing: "",description: "", image: "", };
-  const createPlaceSubmitHandler = async (values) => {
-
-    const placeData = values;
-    placeData.authorId = userId
-    
+  const {placeId} = useParams();
+  const [place] = useGetOnePlaces(placeId);
+  const {userId} = useAuthContext();
+  const editPlaceSubmitHandler = async (values) => {
+    values._id = placeId;
+    values.authorId = userId;
     try {
-     let place = await placeService.create(placeData);
-
-      navigate("/places/"+place._id);
+     await edit(placeId,values)
+     
+      navigate("/places/"+placeId);
     } catch (err) {
       // Error notification
       console.log(err);
     }
   };
   const { values, changeHandler, submitHandler } = useForm(
-    initialValues,
-    createPlaceSubmitHandler
+    place,
+    editPlaceSubmitHandler
   );
 
   return (
@@ -31,7 +31,7 @@ export default function PlaceCreate() {
       <div className="container">
         <div className="row justify-content-center">
           <div className="col-md-6 text-center mb-5">
-            <h2 className="heading-section">Create</h2>
+            <h2 className="heading-section">Edit</h2>
           </div>
         </div>
         <div className="row justify-content-center">
@@ -51,9 +51,9 @@ export default function PlaceCreate() {
                 </div>
                 <div className="form-group">
                   <input
-                    id="distinguishing"
-                    name="distinguishing"
-                    value={values.distinguishing}
+                    id="distinguish"
+                    name="distinguish"
+                    value={values.distinguish}
                     onChange={changeHandler}
                     className="form-control"
                     placeholder="distinguish"
@@ -88,7 +88,7 @@ export default function PlaceCreate() {
                     type="submit"
                     className="form-control btn-sign btn-primary submit px-3"
                   >
-                    Create
+                    Edit
                   </button>
                 </div>
               </form>

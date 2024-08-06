@@ -8,7 +8,7 @@ export default function Home() {
           <div className="text-center">
             <h1 className="mx-auto my-0 text-uppercase">Oasis</h1>
             <h2 className="text-white-50 mx-auto mt-2 mb-3">
-              Amazing places to visit ,that are like out if 
+              Amazing places to visit ,that are like out of 
             </h2>
             <h3 className="text-white-50 mx-auto mt-2 mb-5"> DREAMS
             </h3>

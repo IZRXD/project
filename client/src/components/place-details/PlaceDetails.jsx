@@ -1,16 +1,24 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import "./details.css"
 import * as placeService from "../../services/placeService";
+import { useAuthContext } from "../../contexts/AuthContext";
 
 export default function PlaceDetails() {
   const [place, setPlace] = useState({});
   const { placeId } = useParams();
-
+  const {userId} = useAuthContext();
+  console.log(userId);
+  console.log(place.authorId);
+  
+  const isCreator = userId === place.authorId&&userId!=undefined&&place.authorId!=undefined;
+  let editUrl = "/edit/" + placeId;
+  let deleteUrl = "/delete/" + placeId ;
+  
   useEffect(() => {
     placeService.getOne(placeId).then(setPlace);
+    
   }, [placeId]);
-
   return (
     <section className="py-5">
       <div className="container px-4 px-lg-5 my-5">
@@ -26,26 +34,30 @@ export default function PlaceDetails() {
             <h1 className="display-5 fw-bolder">{place.title}</h1>
 
             <div className="fs-5 mb-5">
-              <span>Theme: {place.theme}</span>
+              <span>Distinguishing: {place.distinguishing}</span>
             </div>
             <p className="lead">Description: </p>
             <p className="lead">{place.description}</p>
-            <div className="d-flex">
-              <button
-                className="btn btn-outline-dark flex-shrink-0"
-                type="button"
-              >
-                <i className="bi-cart-fill me-1"></i>
-                Edit
-              </button>
-              <button
-                className="btn btn-outline-dark flex-shrink-0"
-                type="button"
-              >
-                <i className="bi-cart-fill me-1"></i>
-                Delete
-              </button>
-            </div>
+            {isCreator?(
+              <div className="d-flex">
+                <Link
+                  className="btn btn-outline-dark flex-shrink-0"
+                  type="button"
+                  to={editUrl}
+                >
+                  <i className="bi-cart-fill me-1"></i>
+                  Edit
+                </Link>
+                <Link
+                  className="btn btn-outline-dark flex-shrink-0"
+                  type="button"
+                  to={deleteUrl}
+                >
+                  <i className="bi-cart-fill me-1"></i>
+                  Delete
+                </Link>
+              </div>
+            ): <></>}
           </div>
         </div>
       </div>

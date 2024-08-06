@@ -8,8 +8,9 @@ import PlaceList from "./components/place-list/PlaceList";
 import Login from "./components/login/Login";
 import Register from "./components/register/Register";
 import About from "./components/about/About";
-import ContactUs from "./components/contact/contactUs";
 import Footer from "./components/footer/Footer";
+import PlaceEdit from "./components/place-edit/PlaceEdit";
+import PlaceDelete from "./components/place-delete/PlaceDelete";
 import { AuthContextProvider } from "./contexts/AuthContext";
 import Logout from "./components/logout/Logout";
 function App() {
@@ -27,8 +28,9 @@ function App() {
           <Route path="/logout" element={<Logout />} />
           <Route path="/register" element={<Register />} />
           <Route path="/places/:placeId" element={<PlaceDetails />} />
+          <Route path="/edit/:placeId" element={<PlaceEdit />} />
+          <Route path="/delete/:placeId" element={<PlaceDelete />} />
           <Route path="/about" element={<About />} />
-          <Route path="/contactUs" element={<ContactUs />} />
         </Routes>
         <Footer />
       </AuthContextProvider>

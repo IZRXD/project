@@ -10,7 +10,11 @@ export default function Login() {
   const initialValues = { email: "", password: "" };
   const loginHandler = async ({ email, password }) => {
     try {
-      login(email, password);
+      let result = await login(email, password);
+      
+      if(result?.code==403){
+        throw new Error("Bad respond")
+      }
       navigate("/");
     } catch (error) {
       console.log(error.message);

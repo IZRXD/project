@@ -11302,13 +11302,13 @@ body {
   }
   #mainNav .navbar-brand {
     padding: 0.5rem 0;
-    color: var(--bs-green);
+    color: black;
   }
   
   #mainNav .nav-link {
     transition: none;
     padding: 2rem 1.5rem;
-    color:var(--bs-green);
+    color:black;
   }
   #mainNav .nav-link:hover {
     color: greenyellow;
@@ -11435,8 +11435,8 @@ body {
   padding-top: 10rem;
   background: linear-gradient(
     to bottom,
-    #000 0%,
-    rgba(0, 0, 0, 0.9) 75%,
+  #b19cd9  0%,
+    rgba(255, 192, 203, 0.8) 75%,
     rgba(0, 0, 0, 0.8) 100%
   );
 }

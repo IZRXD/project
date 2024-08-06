@@ -1,19 +1,13 @@
-import { Link } from "react-router-dom";
+
 export default function About() {
   return (
     <section className="about-section text-center" id="about">
       <div className="container px-4 px-lg-5">
         <div className="row gx-4 gx-lg-5 justify-content-center">
           <div className="col-lg-8">
-            <h2 className="text-white mb-4">Built with Bootstrap 5</h2>
-            <p className="text-white-50">
-              Grayscale is Link free Bootstrap theme created by Start Bootstrap.
-              It can be yours right now, simply download the template on
-              <Link to="https://startbootstrap.com/theme/grayscale/">
-                the preview page.
-              </Link>
-              The theme is open source, and you can use it for any purpose,
-              personal or commercial.
+            <h2 className="text-grey mb-4">Oasis</h2>
+            <p className="text-black-50">
+          We provide you a place where you can find the most beautiful places in world from which you can go to explore them  and see new things
             </p>
           </div>
         </div>
