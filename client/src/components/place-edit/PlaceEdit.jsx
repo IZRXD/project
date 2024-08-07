@@ -11,17 +11,14 @@ export default function PlaceEdit() {
   const { userId } = useAuthContext();
   const [fetchedPlace] = useGetOnePlaces(placeId);
   const [error, setError] = useState("");
-  
-  const { values, changeHandler, submitHandler,setValues } = useForm(
+
+  const { values, changeHandler, submitHandler, setValues } = useForm(
     { title: "", description: "", image: "", distinguishing: "" },
     editPlaceSubmitHandler
   );
 
   useEffect(() => {
     if (fetchedPlace) {
-      if(fetchedPlace.authorId!=userId){
-       return navigate("/")
-      }
       setValues(fetchedPlace);
     }
   }, [fetchedPlace, setValues]);
@@ -29,6 +26,10 @@ export default function PlaceEdit() {
   async function editPlaceSubmitHandler(values) {
     values._id = placeId;
     values.authorId = userId;
+    if (values.authorId != userId) {
+      return navigate("/");
+    }
+
     try {
       if (values.title.length > 20) {
         throw new Error("too big title");

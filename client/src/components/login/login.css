@@ -2030,7 +2030,7 @@ textarea.form-control {
 .btn {
   display: inline-block;
   font-weight: 400;
-  color: #212529;
+  color: #00ffcc;
   text-align: center;
   vertical-align: middle;
   -webkit-user-select: none;
@@ -2054,7 +2054,7 @@ textarea.form-control {
       -o-transition: none;
       transition: none; } }
   .btn:hover {
-    color: #212529;
+    color: #f200ff;
     text-decoration: none; }
   .btn:focus, .btn.focus {
     outline: 0;
