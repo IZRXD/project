@@ -25,10 +25,10 @@ export default function PlaceEdit() {
 
   async function editPlaceSubmitHandler(values) {
     values._id = placeId;
-    values.authorId = userId;
-    if (values.authorId != userId) {
+    if (fetchedPlace.authorId != userId) {
       return navigate("/");
     }
+    values.authorId = userId;
 
     try {
       if (values.title.length > 20) {

@@ -90,7 +90,7 @@ export default function Register() {
                       value={values["confirm-password"]}
                       onChange={changeHandler}
                       className="form-control"
-                      placeholder="Password"
+                      placeholder="Repeat Password"
                       required
                     />
                     <span className="fa fa-fw fa-eye field-icon toggle-password"></span>
