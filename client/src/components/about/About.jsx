@@ -7,7 +7,7 @@ export default function About() {
           <div className="col-lg-8">
             <h2 className="text-grey mb-4">Oasis</h2>
             <p className="text-black-50">
-              We provide you a place where you can find the most beautiful
+              We provide you an app where you can find the most beautiful
               places in world from which you can go to explore them and see new
               things
             </p>

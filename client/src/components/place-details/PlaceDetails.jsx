@@ -29,14 +29,16 @@ export default function PlaceDetails() {
             />
           </div>
           <div className="col-md-6">
-            <h1 className="display-5 fw-bolder">{place.title}</h1>
+            <h1 className="display-5 fw-bolder specialPurple">{place.title}</h1>
 
             <div className="fs-5 mb-5">
-              <span>Distinguishing: {place.distinguishing}</span>
+              <span className="specialPurple">
+                Distinguishing: {place.distinguishing}
+              </span>
             </div>
-            <p className="lead">Description: </p>
-            <p className="lead">{place.description}</p>
-            {isCreator?(
+            <p className="lead specialPurple">Description: </p>
+            <p className="lead specialPurple">{place.description}</p>
+            {isCreator ? (
               <div className="d-flex">
                 <Link
                   className="btn btn-outline-dark flex-shrink-0"
@@ -55,7 +57,9 @@ export default function PlaceDetails() {
                   Delete
                 </Link>
               </div>
-            ): <></>}
+            ) : (
+              <></>
+            )}
           </div>
         </div>
       </div>
