@@ -16,7 +16,7 @@ export default function Login() {
       let result = await login(email, password);
 
       if (result?.code == 403) {
-        throw new Error("Bad respond");
+        throw new Error("Not right info");
       }
       navigate("/");
     } catch (error) {
