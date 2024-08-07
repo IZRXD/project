@@ -8,18 +8,22 @@ import { useState, useEffect } from "react";
 export default function PlaceEdit() {
   const navigate = useNavigate();
   const { placeId } = useParams();
-  const [place, setPlace] = useState(null);
   const { userId } = useAuthContext();
-  const [error, setError] = useState("");
   const [fetchedPlace] = useGetOnePlaces(placeId);
+  const [error, setError] = useState("");
+
+  const { values, changeHandler, submitHandler,setValues } = useForm(
+    { title: "", description: "", image: "", distinguishing: "" },
+    editPlaceSubmitHandler
+  );
 
   useEffect(() => {
     if (fetchedPlace) {
-      setPlace(fetchedPlace);
+      setValues(fetchedPlace);
     }
-  }, [fetchedPlace]);
+  }, [fetchedPlace, setValues]);
 
-  const editPlaceSubmitHandler = async (values) => {
+  async function editPlaceSubmitHandler(values) {
     values._id = placeId;
     values.authorId = userId;
     try {
@@ -35,17 +39,12 @@ export default function PlaceEdit() {
     } catch (err) {
       setError(err.message);
     }
-  };
-
-  const { values, changeHandler, submitHandler } = useForm(
-    place || { title: "", description: "", image: "", distinguishing: "" },
-    editPlaceSubmitHandler
-  );
+  }
 
   return (
     <>
       {error && (
-        <div className="error-container ">
+        <div className="error-container">
           <p>{error}</p>
         </div>
       )}
@@ -108,7 +107,6 @@ export default function PlaceEdit() {
                       required
                     />
                   </div>
-
                   <div className="form-group">
                     <button
                       type="submit"
