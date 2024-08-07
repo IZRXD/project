@@ -5,5 +5,6 @@ Oasisis a React-based web application that allows users to explore a catalog of 
 
 **User Authentication**
 - you can sing in with you profile and test your permissions
+
 **Unique Places**
 -while logged you can see places more info button and if you are their owner you can edit or delete them
