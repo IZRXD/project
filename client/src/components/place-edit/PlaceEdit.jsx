@@ -11,7 +11,7 @@ export default function PlaceEdit() {
   const { userId } = useAuthContext();
   const [fetchedPlace] = useGetOnePlaces(placeId);
   const [error, setError] = useState("");
-
+  
   const { values, changeHandler, submitHandler,setValues } = useForm(
     { title: "", description: "", image: "", distinguishing: "" },
     editPlaceSubmitHandler
@@ -19,6 +19,9 @@ export default function PlaceEdit() {
 
   useEffect(() => {
     if (fetchedPlace) {
+      if(fetchedPlace.authorId!=userId){
+       return navigate("/")
+      }
       setValues(fetchedPlace);
     }
   }, [fetchedPlace, setValues]);
