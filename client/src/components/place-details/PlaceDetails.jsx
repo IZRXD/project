@@ -8,8 +8,6 @@ export default function PlaceDetails() {
   const [place, setPlace] = useState({});
   const { placeId } = useParams();
   const {userId} = useAuthContext();
-  console.log(userId);
-  console.log(place.authorId);
   
   const isCreator = userId === place.authorId&&userId!=undefined&&place.authorId!=undefined;
   let editUrl = "/edit/" + placeId;
