@@ -8,3 +8,4 @@ Oasisis a React-based web application that allows users to explore a catalog of 
 
 **Unique Places**
 - while logged you can see places more info button and if you are their owner you can edit or delete them
+  
