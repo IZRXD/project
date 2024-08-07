@@ -77,7 +77,7 @@ export default function Login() {
                       type="submit"
                       className="form-control btn-sign btn-primary submit px-3"
                     >
-                      Sign In
+                     Login
                     </button>
                   </div>
                   <div className="form-group d-md-flex">

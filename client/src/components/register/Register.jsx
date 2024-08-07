@@ -100,16 +100,10 @@ export default function Register() {
                       type="submit"
                       className="form-control btn-sign btn-primary submit px-3"
                     >
-                      Sign In
+                     Register
                     </button>
                   </div>
-                  <div className="form-group d-md-flex">
-                    <div className="w-40 text-md-right">
-                      <a href="/register" style={{ color: "#fff" }}>
-                        Create an account
-                      </a>
-                    </div>
-                  </div>
+                 
                 </form>
               </div>
             </div>
