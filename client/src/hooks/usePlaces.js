@@ -16,7 +16,12 @@ const [places, setPlaces] = useState([]);
 }
 
 export function useGetOnePlaces(placeId) {
-    const [place, setPlace] = useState({});
+    const [place, setPlace] = useState({
+        title:"",
+        description:"",
+        image:"",
+        distinguishing:"",
+    });
 
     useEffect(() => {
         (

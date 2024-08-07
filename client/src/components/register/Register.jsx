@@ -15,13 +15,20 @@ export default function Register() {
     if (values.password !== values["confirm-password"]) {
       return setError("Password mismatch!");
     }
+    if (values.password.length <6) {
+      return setError("Password is too low on characters");
+    }
     if(!values.email.includes('@')){
       
         return setError("Not email");
     }
 
     try {
-      register(values.email, values.password);
+     let result = await register(values.email, values.password);
+      if(result?.code){
+        throw new Error(result.message);
+      }
+      
       navigate("/");
     } catch (error) {
       setError(error.message);
@@ -36,7 +43,7 @@ export default function Register() {
   return (
     <>
       {error && (
-        <div className="error-container hide-after-2s">
+        <div className="error-container ">
           <p>{error}</p>
         </div>
       )}

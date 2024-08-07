@@ -16,7 +16,6 @@ import { useAuthContext } from "./contexts/AuthContext";
 import NotFoundPage from "./components/404/404";
 function App() {
   const { isAuthenticated } = useAuthContext();
-  console.log(isAuthenticated);
   
   return (
     <>
