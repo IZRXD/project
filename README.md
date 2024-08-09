@@ -15,7 +15,7 @@ Oasisis a React-based web application that allows users to explore a catalog of 
   ## Usage
 
 - **Home Page**: Features a welcoming message and an introduction to the Oasis. Includes a  button that directs users to the Places List page.
-- **Places Catalog**: Browse all fighters.
+- **Places Catalog**: Browse all places.
 - **Places Details**: View detailed information about an places.
 - **Create Place**: Authenticated users can create new places.
 - **Edit Place**: Authenticated users can edit their places.
